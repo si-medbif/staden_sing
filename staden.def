@@ -9,20 +9,16 @@ From: ubuntu:18.04
   CONTAINER_VERSION v0.1
   STADEN_PACKAGE_VERSION v1.14.11
   ORIGINAL_SOURCE https://github.com/jkbonfield/io_lib/releases/download/io_lib-1-14-11/io_lib-1.14.11.tar.gz
-
-%environment
-  export PATH=/opt/qprot_v1.3.5/bin/:$PATH
-
-%files
-  #Download file from sourceforge and put into the same directory as the definition file (.def)
-  qprot_v1.3.5.zip /opt
    
 %post
   apt-get update && apt-get upgrade && apt-get install -y --no-install-recommends \
-        build-essential unzip gsl-bin libgsl0-dev 
+        make zlib1g-dev libbz2-dev liblzma-dev wget
   cd /opt
-  unzip qprot_v1.3.5.zip
-  cd qprot_v1.3.5
-  make all
-  apt-get remove -y unzip
+  wget https://github.com/jkbonfield/io_lib/releases/download/io_lib-1-14-11/io_lib-1.14.11.tar.gz
+  tar -xzf io_lib-1.14.11.tar.gz io_lib/
+  cd io_lib
+  ./configure
+  make
+  make install
+  
   rm -rf /var/lib/apt/lists/*
