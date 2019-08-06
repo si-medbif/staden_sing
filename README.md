@@ -9,5 +9,5 @@ $ sudo singularity build <image_name>.sif staden.def
 ## How to access the image
 Run the following command to access image (shell)
 ```
-$singularity shell <image_name>.sif
+$ singularity shell <image_name>.sif
 ```
