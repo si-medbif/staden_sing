@@ -11,14 +11,20 @@ From: ubuntu:18.04
   ORIGINAL_SOURCE https://github.com/jkbonfield/io_lib/releases/download/io_lib-1-14-11/io_lib-1.14.11.tar.gz
    
 %post
-  apt-get update && apt-get upgrade && apt-get install -y --no-install-recommends \
-        make zlib1g-dev libbz2-dev liblzma-dev wget
+  apt update && apt upgrade -y
+  apt install -y wget make build-essential zlib1g-dev libbz2-dev liblzma-dev
   cd /opt
   wget https://github.com/jkbonfield/io_lib/releases/download/io_lib-1-14-11/io_lib-1.14.11.tar.gz
-  tar -xzf io_lib-1.14.11.tar.gz io_lib/
-  cd io_lib
+  
+  mkdir io_lib/
+  tar -xzf io_lib-1.14.11.tar.gz -C /opt/io_lib/ --strip-components 1
+  rm io_lib-1.14.11.tar.gz
+  
+  cd /opt/io_lib
+  
   ./configure
   make
   make install
   
   rm -rf /var/lib/apt/lists/*
+
