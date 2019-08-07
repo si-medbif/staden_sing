@@ -12,7 +12,7 @@ From: ubuntu:18.04
    
 %post
   apt update && apt upgrade -y
-  apt install -y wget make build-essential zlib1g-dev libbz2-dev liblzma-dev
+  apt install -y wget make build-essential zlib1g-dev libbz2-dev liblzma-dev autoconf automake libtool
   cd /opt
   wget https://github.com/jkbonfield/io_lib/releases/download/io_lib-1-14-11/io_lib-1.14.11.tar.gz
   
